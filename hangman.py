@@ -56,10 +56,10 @@ file_length_normal = 850
 
 
 def get_word_from_lexicon(difficulty):
-    """Returns the list version of a word from one of two lexicons"""
+    """Returns the list version of a word from one of two lexicons. Example, the word donkey will be returned as ['d', 'o', 'n', 'k', 'e', 'y']"""
     try:
         if difficulty == "normal":
-            line_number = random.randint(1, file_length_normal)
+            line_number = random.randint(1, file_length_normal) 
         else:
             line_number = random.randint(1, file_length_hard)
         word = open("{}.txt".format(difficulty), "r").readlines()[line_number]
@@ -69,7 +69,7 @@ def get_word_from_lexicon(difficulty):
 
 
 def censored_word_list(word):
-    """Creates a censored list"""
+    """Creates a censored list. A list of the same length as the word list"""
     word_censored_list = []
     for i in range(len(word)):
         word_censored_list.append("_")
@@ -77,11 +77,12 @@ def censored_word_list(word):
 
 
 def draw_hangman(part_number):
-    """Prints """
+    """Prints a body part of the hangman figure"""
     print(hangman_drawing[part_number])
 
 
 def reveal_letter(word, word_censored, letter_to_reveal):
+    """Reveals a letter or multiple letters from the censored list"""
     for i in range(len(word)):
         if word[i] == letter_to_reveal:
             word_censored[i] = letter_to_reveal
@@ -89,6 +90,7 @@ def reveal_letter(word, word_censored, letter_to_reveal):
 
 
 def guess_letter(word, word_censored, letter, part_number):
+    """Determines whether or not a letter must be revealed or if a body part must be revealed"""
     if letter in word:
         return reveal_letter(word, word_censored, letter)
     else:
@@ -97,6 +99,7 @@ def guess_letter(word, word_censored, letter, part_number):
 
 
 def initialise_game():
+    """Sets the initial conditions of the game"""
     difficulty_input = input(LINE + "\nPlease select a difficulty:\n1. Normal\n2. Hard\n--> ")
     difficulty = "normal" if difficulty_input == "1" else "hard"
     word = get_word_from_lexicon(difficulty)
@@ -105,6 +108,7 @@ def initialise_game():
 
 
 def game(word, censored_word):
+    """Handles the game logic"""
     # print(word)
     start_game = int(input(LINE + "\nMenu:\n1. Start game\n0. Quit\n--> "))
     if start_game == 1:
@@ -134,4 +138,4 @@ def game(word, censored_word):
 if __name__ == '__main__':
     initialise_game()
 
-# TODO: Clean up code, clean up outputs, error handling, document
+# TODO: Clean up code, clean up outputs, error handling
