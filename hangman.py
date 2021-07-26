@@ -54,7 +54,6 @@ hangman_drawing = ['''
 file_length_hard = 60823
 file_length_normal = 850
 
-#NEw comment
 
 def get_word_from_lexicon(difficulty):
     """Returns the list version of a word from one of two lexicons. Example, the word donkey will be returned as ['d', 'o', 'n', 'k', 'e', 'y']"""
